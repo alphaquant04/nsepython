@@ -743,6 +743,7 @@ niftyindices_headers = {
 }
 
 def index_history(symbol,start_date,end_date):
+    symbol = symbol.toUpperCase().trim();
     data = f"{{ 'cinfo': \"{{'name':'{symbol}','startDate':'{start_date}','endDate':'{end_date}','indexName':'{symbol}'}}\" }}"
     payload = requests.post('https://niftyindices.com/Backpage.aspx/getHistoricaldatatabletoString', headers=niftyindices_headers,  data=data).json()
     payload = json.loads(payload["d"])
@@ -750,6 +751,7 @@ def index_history(symbol,start_date,end_date):
     return payload
 
 def index_pe_pb_div(symbol,start_date,end_date):
+    symbol = symbol.toUpperCase().trim();
     data = f"{{ 'cinfo': \"{{'name':'{symbol}','startDate':'{start_date}','endDate':'{end_date}','indexName':'{symbol}'}}\" }}"
     payload = requests.post('https://niftyindices.com/Backpage.aspx/getpepbHistoricaldataDBtoString', headers=niftyindices_headers,  data=data).json()
     payload = json.loads(payload["d"])
